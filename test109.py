@@ -17,7 +17,7 @@ class Sprite(pygame.sprite.Sprite):
         self.rect=self.image.get_rect()
     def move(self,xchange,ychange):
         self.rect.x=max(min(self.rect.x+xchange,SCREENWIDTH-self.rect.width),0)
-        self.rect.x=max(min(self.rect.y+ychange,SCREENHIEGHT-self.rect.height),0)
+        self.rect.y=max(min(self.rect.y+ychange,SCREENHIEGHT-self.rect.height),0)
 screen=pygame.display.set_mode((SCREENWIDTH,SCREENHIEGHT))
 pygame.display.set_caption("sprite collison")
 allsprites=pygame.sprite.Group()
@@ -47,7 +47,9 @@ while running:
     allsprites.draw(screen)
     if won:
         wintext=font.render("you win",True,pygame.Color('black'))
-        screen.blit(wintext,((SCREENWIDTH-wintext.get_width)//2,((SCREENWIDTH-wintext.get_height)//2)))
+        
+        screen.blit(wintext, ((SCREENWIDTH - wintext.get_width()) // 2,
+        (SCREENHIEGHT - wintext.get_height()) // 2))
     pygame.display.flip()
     clock.tick(90)
 pygame.quit()
